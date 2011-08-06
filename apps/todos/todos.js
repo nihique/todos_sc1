@@ -26,11 +26,6 @@ Todos.CreateTodoView = SC.TextField.extend({
     }
 });
 
-Todos.MarkDoneView = SC.Checkbox.extend({
-    titleBinding: '.parentView.content.title',
-    valueBinding: '.parentView.content.isDone'
-});
-
 Todos.StatsView = SC.TemplateView.extend({
     remainingBinding: 'Todos.todoListController.remaining',
 
