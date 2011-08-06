@@ -4,16 +4,21 @@
 // ==========================================================================
 /*globals Todos */
 
-// Creates main application object
 Todos = SC.Application.create();
 
-// Creates Todo class
+
+
+// Models
+
 Todos.Todo = SC.Object.extend({
     title: null,
     isDone: false
 });
 
-// Add new class for CreateTodoView view
+
+
+// Views
+
 Todos.CreateTodoView = SC.TextField.extend({
     insertNewline: function() {
         var value = this.get('value');
@@ -24,23 +29,33 @@ Todos.CreateTodoView = SC.TextField.extend({
     }
 });
 
+Todos.MarkDoneView = SC.Checkbox.extend({
+    titleBinding: '.parentView.content.title',
+    valueBinding: '.parentView.content.isDone'
+});
+
+
+
+// Controllers
+
 Todos.todoListController = SC.ArrayController.create({
-    // Initialize the array controller with an empty array
     content: [
         Todos.Todo.create({ title: 'First todo' }),
         Todos.Todo.create({ title: 'This is second todo' }),
         Todos.Todo.create({ title: 'Third todo', isDone: true })
     ],
 
-    // Creates a new todo with title and adds it to array in controller
     createTodo: function(title) {
         var todo = Todos.Todo.create({ title: title });
         this.pushObject(todo);
     }
 });
 
+
+
+// SC.ready
+
 SC.ready(function() {
-    // Create main application pane and renders template 'todos.handlebars'
     Todos.mainPane = SC.TemplatePane.append({
         layerId: 'todos',
         templateName: 'todos'

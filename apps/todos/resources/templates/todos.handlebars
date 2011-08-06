@@ -4,6 +4,8 @@
     <input id="new-todo" type="text" placeholder="What needs to be done?" />
 {{/view}}
 
-{{#collection SC.TemplateCollectionView contentBinding="Todos.todoListController"}}
-    {{content.title}}
+{{#collection SC.TemplateCollectionView 
+    contentBinding="Todos.todoListController"
+    itemClassBinding="content.isDone"}}
+    {{view Todos.MarkDoneView}}
 {{/collection}}
