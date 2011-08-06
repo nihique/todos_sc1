@@ -10,10 +10,7 @@ Todos = SC.Application.create();
 
 // Models
 
-Todos.Todo = SC.Object.extend({
-    title: null,
-    isDone: false
-});
+Todos.Todo = SC.Object.extend({ title: null, isDone: false });
 
 
 
@@ -39,7 +36,7 @@ Todos.StatsView = SC.TemplateView.extend({
 
     displayRemaining: function() {
         var remaining = this.get('remaining');
-        return remaining + (remaining === 1 ? ' item' : ' items');
+        return remaining + (remaining === 1 ? " item" : " items");
     }.property('remaining')
 });
 
@@ -61,7 +58,11 @@ Todos.todoListController = SC.ArrayController.create({
 
     remaining: function() {
         return this.filterProperty('isDone', false).get('length');
-    }.property('@each.isDone')
+    }.property('@each.isDone'),
+
+    clearCompletedTodos: function() {
+        this.filterProperty('isDone', true).forEach(this.removeObject, this);
+    }
 });
 
 
@@ -74,3 +75,4 @@ SC.ready(function() {
         templateName: 'todos'
     });
 });
+
