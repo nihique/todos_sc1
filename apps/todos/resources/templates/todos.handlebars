@@ -11,11 +11,7 @@
     {{displayRemaining}} remaining.
 {{/view}}
 
-{{view SC.Checkbox 
-    class="mark-all-done"
-    title="Mark All Done"
-    valueBinding="Todos.todoListController.allAreDone"
-    action="Todos.todoListController.markAllDone"}}
+{{view SC.Checkbox class="mark-all-done" title="Mark All Done" valueBinding="Todos.todoListController.allAreDone"}}
 
 {{#collection SC.TemplateCollectionView contentBinding="Todos.todoListController" itemClassBinding="content.isDone"}}
     {{view Todos.MarkDoneView}}
